@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1io_1_1_handler_plugin.md "Improve this documentation")
 ma::io::HandlerPlugin
 =====================
 

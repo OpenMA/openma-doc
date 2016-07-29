@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/struct_properties.md "Improve this documentation")
 Properties
 ==========
 

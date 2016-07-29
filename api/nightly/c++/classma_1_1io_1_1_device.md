@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1io_1_1_device.md "Improve this documentation")
 ma::io::Device
 ==============
 

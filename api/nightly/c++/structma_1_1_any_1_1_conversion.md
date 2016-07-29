@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/structma_1_1_any_1_1_conversion.md "Improve this documentation")
 ma::Any::Conversion
 ===================
 

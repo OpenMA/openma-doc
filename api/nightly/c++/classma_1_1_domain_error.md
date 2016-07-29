@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1_domain_error.md "Improve this documentation")
 ma::DomainError
 ===============
 

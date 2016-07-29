@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1_logger.md "Improve this documentation")
 ma::Logger
 ==========
 

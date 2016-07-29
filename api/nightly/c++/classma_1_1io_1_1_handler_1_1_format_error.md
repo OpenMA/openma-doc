@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1io_1_1_handler_1_1_format_error.md "Improve this documentation")
 ma::io::Handler::FormatError
 ============================
 

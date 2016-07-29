@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1maths_1_1_pose.md "Improve this documentation")
 ma::maths::Pose
 ===============
 

@@ -1,4 +1,3 @@
-[**](https://github.com/openma/openma-doc/edit/api/nightly/c++/classma_1_1typeid__t.md "Improve this documentation")
 ma::typeid\_t
 =============
 
