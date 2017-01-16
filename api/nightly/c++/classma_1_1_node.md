@@ -6,9 +6,9 @@ Base class for the data structure.
 Detailed Description
 --------------------
 
-The data struture in OpenMA is mostly a tree-like structure (more exactly it is a graph as a node can have several parents). The general idea is to store data in a dynamic structure without the need to modify the internal storage each time a new category of data is added (e.g. pressure, GPS, etc.). Thus, it would be simpler to integrate new kind of file formats as well as new models.
+The data struture in OpenMA is mostly a tree-like structure (more exactly it is a graph, as a node can have several parents). The general idea is to store data in a dynamic structure without the need to modify the internal storage each time a new category of data is added (e.g. pressure, GPS, etc.). Thus, it would be simpler to integrate new kind of file formats as well as new models.
 
-Children nodes are owned by their parents. Thus only the first parent(s) (e.g. the root' tree) has to be deleted. This one can be stored in a smart pointer (shared, unique pointer) to not manage its deletion. For example:
+Children nodes are owned by their parents. Thus only the first parent(s) (e.g. the root' tree) has to be deleted. This one can be stored in a smart pointer (shared, unique pointer) to avoid managing its deletion. For example:
 
     ma::Node* root = new ma::Node("root");
     ma::Node* leafA = new ma::Node("leafA",&root); // Owned by the root
@@ -35,9 +35,9 @@ In case this order is not respected, a runtime error (or crash) should occur lik
     ma::Node leafB("leafB",&root); // Owned by the root
     leafA.addParent(&root); // Owned by the root
     // ...
-    // End of the program/function, leafB is destroyed, then root which destroys also its children. What about leafA?
+    // End of the program/function, leafB is destroyed, then root, which also destroys its children. What about leafA?
 
-In the previous example, the remaining child of root (pointer to leafA) is a local variable and calling its destructor is incorrect. Thus, when the variable leafA goes out of scope, its destructor is called again. The same memory is freed two times that should crash the program.
+In the previous example, the remaining child of root (pointer to leafA) is a local variable and calling its destructor is incorrect. Thus, when the variable leafA goes out of scope, its destructor is called again. The same memory is freed twice, which should crash the program.
 
 Finally, to declare a custom node type (i.e. a new inheriting class), several macros can be used:
 
@@ -105,19 +105,19 @@ Note: It is adviced to have a unique **. This would simplify the research of spe
 
     ma::Node::Node ( NodePrivate  &  pimpl ,  Node  *  parent ) noexcept
 
-Constructor to be used by inherited object which want to add informations (static properties, members, etc) to the private implementation.
+Constructor to be used by an inherited object that wants to add information (static properties, members, etc) to the private implementation.
 
 ------------------------------------------------------------------------
 
     ma::Node::~Node ( ) noexcept [virtual]
 
-Destructor. Detach this object of these children. In case a child has no more parent, it is deleted. Detach also this object of these parents
+Destructor. Detach this object of its children. In case a child has no more parent, it is deleted. Detach also this object of its parent
 
 ------------------------------------------------------------------------
 
     void ma::Node::addParent ( Node  *  node ) noexcept
 
-Appends a node if this one is not already a parent. In case this node is added, *node* is attached as parent and its state is set to modified.
+Appends a node provided it is not a parent already. In case this node is added, *node* is attached as parent and its state is set to modified.
 
 ------------------------------------------------------------------------
 
@@ -136,13 +136,13 @@ Returns the node associated with the given *index* or null if out of range. By d
 
     const std::list<  Node  * > & ma::Node::children ( ) const noexcept
 
-Returns the list of children attached with this node.
+Returns the list of children attached to this node.
 
 ------------------------------------------------------------------------
 
     void ma::Node::clear ( ) noexcept
 
-Removes all parents, children and properties If a child has no more parent, this one is deleted.
+Removes all parents, children and properties. If a child has no more parent, it is deleted.
 
 ------------------------------------------------------------------------
 
@@ -166,7 +166,7 @@ Note: This method does not copy the parent. If you need to copy the parent, you 
 
     const  std::string  & ma::Node::description ( ) const noexcept
 
-Returns the description of the node. By default the description is empty. You can also access to this information using the property 'description'.
+Returns the description of the node. By default the description is empty. You can also access this information using the property 'description'.
 
 ------------------------------------------------------------------------
 
@@ -187,7 +187,7 @@ By default, the default type is set to [ma::Node](classma_1_1_node.html)\*, so y
     ma::Node* foo = root.findChild(); // First child
     ma::Node* bar = root.findChild("bar"); // A node with the name "bar"
 
-In addition, you can add properties to refine the research. Sometimes this could be usefull to distinguish events with the same name but different properties. As presented in the following examples, it is adviced to give matching properties in an initializer list using curly brackets due to the use of the move semantics in the method. Inside, each matching property is given as a pair {key, value} given also by an initializer list. So, for a single matching property, two pairs of curly brackets are used but this is correct.
+In addition, you can add properties to refine the search. Sometimes this can be useful to distinguish events with the same name but different properties. As presented in the following examples, it is adviced to give matching properties in an initializer list using curly brackets due to the use of the move semantics in the method. Inside, each matching property is given as a pair {key, value}, given also by an initializer list. So, for a single matching property, two pairs of curly brackets are used but this is correct.
 
     ma::Node events("Events");
     ma::Event evtA("Foo",0.0,"Right","JDoe",&events);
@@ -254,25 +254,25 @@ Returns true if the current object is isCastable to another with the given ** va
 
     void ma::Node::modified ( ) noexcept [virtual]
 
-Overload method which modify this object as well as all these parents.
+Overload method which modifies this object as well as all its parents.
 
 ------------------------------------------------------------------------
 
     const  std::string  & ma::Node::name ( ) const noexcept
 
-Returns the name of the node. You can also access to this information using the property 'name'.
+Returns the name of the node. You can also access this information using the property 'name'.
 
 ------------------------------------------------------------------------
 
     const std::list<  Node  * > & ma::Node::parents ( ) const noexcept
 
-Returns the list of parents attached with this node.
+Returns the list of parents attached to this node.
 
 ------------------------------------------------------------------------
 
     Any ma::Node::property ( const  std::string  &  key ) const noexcept [virtual]
 
-Returns the value's property associated to the given *key*. The value is a [Any](classma_1_1_any.html) object and can be converted to several types implicity. For example, the following code shows two ways to extract property's value.
+Returns the value of the property associated to the given *key*. The value is a [Any](classma_1_1_any.html) object and can be converted to several types implicitly. For example, the following code shows two ways to extract property's value.
 
     ma::Node node("node");
     node.setProperty("count","1");
@@ -288,19 +288,19 @@ Returns the value's property associated to the given *key*. The value is a [Any]
 
 Remove the given *node* from the list of the parent.
 
-Note: It is the responsability to the developer to delete this node if this one has no more parent. :
+Note: It is developer's responsability to delete this node if it has no parent. :
 
 ------------------------------------------------------------------------
 
     void ma::Node::replaceChild ( Node  *  current ,  Node  *  substitute )
 
-Replace the child *current*, by a *substitute*. The node *current* will be deleted if it has no more parent.
+Replace the child *current*, by *substitute*. The node *current* will be deleted if it has no parent.
 
 ------------------------------------------------------------------------
 
     std::list< const  Node  * > ma::Node::retrievePath ( const  Node  *  node ) const noexcept
 
-Retrieves the first path existing between the current node and the given *node*. If no path exists between both, then an empty list is returned, The first node in the retrieved path is the current one, while the last is the node to search.
+Retrieves the first path existing between the current node and the given *node*. If no path exists between both, then an empty list is returned. The first node in the retrieved path is the current one and the last one is the node searched.
 
 ------------------------------------------------------------------------
 
@@ -320,7 +320,7 @@ Sets the name of the node. You can also modify this information using the proper
 
     void ma::Node::setProperty ( const  std::string  &  key ,  const  Any  &  value ) [virtual]
 
-Sets the property *key* with the given *value*. The *value* can be an [Any](classma_1_1_any.html) object or a type supported by it (e.g. int, double, std::string,). In case the property does not exist, or its value is different, or it is removed, the state of the node is set to modified.
+Sets the value of property *key* to the given *value*. *value* can be an [Any](classma_1_1_any.html) object or a type supported by it (e.g. int, double, std::string,). In case the property does not exist, or its value is different, or it is removed, the state of the node is set to modified.
 
 ------------------------------------------------------------------------
 
@@ -331,13 +331,13 @@ Macros Documentation
 
 Define the public method [isCastable()](#1a8224478a527b0e01620ec44f5b165d78) used to determine if the object can be cast to the given type.
 
-Note: This macro must be included by every inheriting [](classma_1_1_node.html) classes to be correctly recognised as suche. For example, the function node\_cast() needs the use of this macro to correctly work. :
+Note: This macro must be included by every inheriting [](classma_1_1_node.html) classes to be correctly recognised as such. For example, the function node\_cast() needs to use this macro to correctly work. :
 
 ------------------------------------------------------------------------
 
     OPENMA_DECLARE_STATIC_PROPERTIES_BASE  ( class ,  ...  )
 
-Add a private StaticProperties structure and the methods staticProperty() and setStaticProperty(). The classes that can use this macro may need to derive of the class [ma::Node](classma_1_1_node.html) (or any inheriting class) but its private implementation must be a based one.
+Add a private StaticProperties structure and the methods staticProperty() and setStaticProperty(). For a class to use this macro it may need to derive from the class [ma::Node](classma_1_1_node.html) (or any inheriting class) but its private implementation must be a based one.
 
 See also [Property](structma_1_1_property.html)
 
