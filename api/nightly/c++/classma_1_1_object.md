@@ -6,16 +6,16 @@ Base for all objects which need to keep track of modified time.
 Detailed Description
 --------------------
 
-This class uses the private implementation (pimpl) idiom to keep an ABI compatibility between the different release of the project.
+This class uses the private implementation (pimpl) idiom to keep an ABI compatibility between the different releases of the project.
 
 Two macros are provided to simplify the implementation of the pimpl idiom. Both of them are defined in the file "openma/base/opaque.h".
 
 -   [OPENMA\_DECLARE\_PIMPL\_ACCESSOR()](#1a42d82423cf13709e1df5131d21de2640): Creates pimpl() methods in the public interface to access to the private part (opaque pointer)
 -   [OPENMA\_DECLARE\_PINT\_ACCESSOR()](#1a0a5b1a81a45138d9a99cb01c6e1fc6b5): Creates pint() methods in the private implementation to access to the public part
 
-For example, the following header file create a new class which contains an accessor and mutator for a member 'Version' in the (opaque) private implementation. The macro [OPENMA\_DECLARE\_PIMPL\_ACCESSOR()](#1a42d82423cf13709e1df5131d21de2640) declares private pimpl() methods used to access to the mp\_Pimpl member. The methods are able to downcast to the given classname. This is usefull when the implemented class inherits from a class which uses already the pimpl idiom.
+For example, the following header file create a new class which contains an accessor and mutator for a member 'Version' in the (opaque) private implementation. The macro [OPENMA\_DECLARE\_PIMPL\_ACCESSOR()](#1a42d82423cf13709e1df5131d21de2640) declares private pimpl() methods used to access to the mp\_Pimpl member. The methods are able to downcast to the given classname. This is useful when the implemented class inherits from a class that already uses the pimpl idiom.
 
-To use the macros for custom development you can follow the next examples. The first and second introduce the macros while the third introduce their use to inherit from the class openma::Object
+To use the macros for custom development you can follow the next examples. The first and second introduce the macros while the third introduces their use to inherit from the class openma::Object
 
 First the public interface is defined in a header file.
 
@@ -109,7 +109,7 @@ In the following example, the macro defining the accessors of the public interfa
       std::cout << this->version() << std::endl;
     };
 
-Finally, to extand OpenMA with a new class, you can inherit from the class openma::Object (or other inherited classes). Thus it is even simpler to use the pimpl idiom. Indeed, the member mp\_Pimpl is already declared in the class openma::Object. You only need to inherit from the public and private part. Note, to inherit from the private part, this one is defined in its own private header file (with the suffix \_p) to not have it visible and possible break the ABI compatibilty.
+Finally, to extend OpenMA with a new class, you can inherit from the class openma::Object (or other inherited classes). Thus it is even simpler to use the pimpl idiom. Indeed, the member mp\_Pimpl is already declared in the class openma::Object. You only need to inherit from the public and private part. Note that, to inherit from the private part, this one is defined in its own private header file (with the suffix \_p) to not have it visible and possible break the ABI compatibilty.
 
     class MyObjectPrivate; // Defined outside in case it can be reused
 
