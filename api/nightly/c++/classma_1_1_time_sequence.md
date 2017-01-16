@@ -22,7 +22,7 @@ To go futher, reconstructed data (e.g. acquired by a sterephotogrammetric system
     // Check if the object stores reconstructed data
     std::cout << marker.type() & ma::TimeSequence::Reconstructed << std::endl;
 
-For ADC data, some members were added to give supplementary information that could be used useful when exporting the [TimeSequence](classma_1_1_time_sequence.html) into a file. You can pass to the constructor 3 ADC parameters: *scale*, *offset*, and *range*. By default, the ADC resolution is not stored as it is assumed that all [TimeSequence](classma_1_1_time_sequence.html) objects use the same converter. However, you could add a dynamic property (e.g. *resolution*) using [setProperty()](classma_1_1_node.html#1ac22e4aa3baa9ed33b887109922eba172) to store this information. In general the file formats proposed in OpenMAto to read/write ADC data use only the three stored ADC parameter (scale, offset, range). You should read their dedicated documentation for more details.
+For ADC data, some members were added to give supplementary information that could be used useful when exporting the [TimeSequence](classma_1_1_time_sequence.html) into a file. You can pass to the constructor 3 ADC parameters: *scale*, *offset*, and *range*. By default, the ADC resolution is not stored as it is assumed that all [TimeSequence](classma_1_1_time_sequence.html) objects use the same converter. However, you could add a dynamic property (e.g. *resolution*) using [setProperty()](classma_1_1_node.html#1ac22e4aa3baa9ed33b887109922eba172) to store this information. In general the file formats proposed in OpenMA to read/write ADC data use only the three stored ADC parameter (scale, offset, range). You should read their dedicated documentation for more details.
 
     // The last three arguments are for:
     //  - The ADC scale: 1.0
@@ -39,7 +39,7 @@ Properties Documentation
 
     samples :  unsigned 
 
-This property holds the number of samples of a Timesequnce. By default, this property is set to 0.
+This property holds the number of samples of a Timesequence. By default, this property is set to 0.
 
 See also [samples()](#1a65f4ec19067fa191d80f25712e6b4f9b) setSamples()
 
@@ -47,7 +47,7 @@ See also [samples()](#1a65f4ec19067fa191d80f25712e6b4f9b) setSamples()
 
     sampleRate :  double 
 
-This property holds the sample rate of a Timesequnce. By default, this property is set to 0.
+This property holds the sample rate of a Timesequence. By default, this property is set to 0.
 
 See also [sampleRate()](#1a16af29f738532e0773d6fb642a64934b), [setSampleRate()](#1aeafdc767622bb96dfc3c44de6da8f41b)
 
@@ -55,7 +55,7 @@ See also [sampleRate()](#1a16af29f738532e0773d6fb642a64934b), [setSampleRate()](
 
     startTime :  double 
 
-This property holds the start time of a Timesequnce. By default, this property is set to 0.0.
+This property holds the start time of a Timesequence. By default, this property is set to 0.0.
 
 See also [startTime()](#1a7b88703b6155f3b36b696d33ed0a60e1), [setStartTime()](#1a4e65fa7051ccb8f134eee3c90d938100)
 
@@ -63,7 +63,7 @@ See also [startTime()](#1a7b88703b6155f3b36b696d33ed0a60e1), [setStartTime()](#1
 
     type :  int 
 
-This property holds the type of a Timesequnce. By default, this property is set to [TimeSequence::Unknown](#1a8e5ba2425b030c3b7726203c1efbdac2a56812a8c085f6970d9505e9e081eca25).
+This property holds the type of a Timesequence. By default, this property is set to [TimeSequence::Unknown](#1a8e5ba2425b030c3b7726203c1efbdac2a56812a8c085f6970d9505e9e081eca25).
 
 See also [type()](#1acb8464f3b4a467888aa513b98241d79f), [setType()](#1adb5ae37fb7459c7034324dc362e435b3)
 
@@ -71,7 +71,7 @@ See also [type()](#1acb8464f3b4a467888aa513b98241d79f), [setType()](#1adb5ae37fb
 
     unit :  std::string 
 
-This property holds the unit of a Timesequnce. By default, this property contains an empty string.
+This property holds the unit of a Timesequence. By default, this property contains an empty string.
 
 Note: The modification of this property does not influence the data. This is only for information purpose :
 
@@ -81,7 +81,7 @@ See also [unit()](#1a962f685ff880375486384cd8a5e28c37), [setUnit()](#1ae0f719f21
 
     scale :  double 
 
-This property holds the scale of a Timesequnce. By default, this property is set to 1.0.
+This property holds the scale of a Timesequence. By default, this property is set to 1.0.
 
 Note: The modification of this property does not influence the data. This is only for information purpose :
 
@@ -91,7 +91,7 @@ See also [scale()](#1aa57fc84ed194a17e866f1dca2430b45a), [setScale()](#1a4d3d455
 
     offset :  double 
 
-This property holds the offset of a Timesequnce. By default, this property is set to 0.
+This property holds the offset of a Timesequence. By default, this property is set to 0.
 
 Note: The modification of this property does not influence the data. This is only for information purpose :
 
@@ -101,7 +101,7 @@ See also [offset()](#1a151f1eb170c0799178e9aabcf84c82db), [setOffset()](#1a10388
 
     range :  std::array< double, 2 > 
 
-This property holds the range of a Timesequnce. By default, this property is set to \[-infinity, +infinity\].
+This property holds the range of a Timesequence. By default, this property is set to \[-infinity, +infinity\].
 
 Note: The modification of this property does not influence the data. This is only for information purpose :
 
@@ -138,7 +138,7 @@ Contextual information about the kind of data stored in the time sequence.
 <tr class="even">
 <td>Reconstructed</td>
 <td>= 0x01</td>
-<td><p>Internal flag to indicated if these data are reconstructed data. The usage of this flag shall mean that some components are resevred for reconstruction residuals. For example if a <a href="classma_1_1_time_sequence.html">TimeSequence</a> is set to the Type Marker (predefined value included the Reconstructed flag), the given dimension should be set to 4. Three of them are for the coordinates and the later is for the reconstruction residuals.</p></td>
+<td><p>Internal flag to indicate if these data are reconstructed data. The usage of this flag shall mean that some components are reserved for reconstruction residuals. For example if a <a href="classma_1_1_time_sequence.html">TimeSequence</a> is set to the Type Marker (predefined value included the Reconstructed flag), the given dimension should be set to 4. Three of them are for the coordinates and the later is for the reconstruction residuals.</p></td>
 </tr>
 <tr class="odd">
 <td>Marker</td>
@@ -183,7 +183,7 @@ Contextual information about the kind of data stored in the time sequence.
 <tr class="odd">
 <td>Other</td>
 <td>= 0x10000</td>
-<td><p>To be used to extend predefined type. This could be usefull to extract all the node with a specific type.</p></td>
+<td><p>To be used to extend predefined type. This could be useful to extract all the node with a specific type.</p></td>
 </tr>
 </tbody>
 </table>
@@ -195,7 +195,7 @@ Member Function Documentation
 
     ma::TimeSequence::TimeSequence ( const  std::string  &  name ,  unsigned  components ,  unsigned  samples ,  double  rate ,  double  start ,  int  type ,  const  std::string  &  unit ,  double  scale ,  double  offset ,  const  std::array< double, 2 >  &  range ,  Node  *  parent  = nullptr )
 
-Complete constructor for time series signal with 1D data sample. This constructor can be usefull for Analog signal recorded by a digital-to-analog converter (DAC).
+Complete constructor for time series signal with 1D data sample. This constructor can be useful for Analog signals recorded by a digital-to-analog converter (DAC).
 
 Note: The given ** should be based on the enum Type. :
 
@@ -203,7 +203,7 @@ Note: The given ** should be based on the enum Type. :
 
     ma::TimeSequence::TimeSequence ( const  std::string  &  name ,  unsigned  components ,  unsigned  samples ,  double  rate ,  double  start ,  int  type ,  const  std::string  &  unit ,  Node  *  parent  = nullptr )
 
-Simplified constructor for time series signal with 1D data sample. Lots of predefined type (Marker, Angle, Force, Moment, etc.) should use this constructor.
+Simplified constructor for time series signal with 1D data sample. Lots of predefined types (Marker, Angle, Force, Moment, etc.) should use this constructor.
 
 Note: The given ** should be based on the enum Type. :
 
@@ -211,7 +211,7 @@ Note: The given ** should be based on the enum Type. :
 
     ma::TimeSequence::TimeSequence ( const  std::string  &  name ,  const  std::vector< unsigned >  &  components ,  unsigned  samples ,  double  rate ,  double  start ,  int  type ,  const  std::string  &  unit ,  double  scale ,  double  offset ,  const  std::array< double, 2 >  &  range ,  Node  *  parent  = nullptr )
 
-Complete constructor for time series signal with xD data sample. The number of data sample dimensions is determined by the number of *components* given. This constructor can be usefull for pressure matrix or any measuring system with 2D (or more) data sample dimension.
+Complete constructor for time series signal with xD data sample. The number of data sample dimensions is determined by the number of *components* given. This constructor can be useful for pressure matrix or any measuring system with 2D (or more) data sample dimension.
 
 Note: The given ** should be based on the enum Type. :
 
@@ -219,7 +219,7 @@ Note: The given ** should be based on the enum Type. :
 
     ma::TimeSequence::TimeSequence ( const  std::string  &  name ,  const  std::vector< unsigned >  &  components ,  unsigned  samples ,  double  rate ,  double  start ,  int  type ,  const  std::string  &  unit ,  Node  *  parent  = nullptr )
 
-Simplified constructor for time series signal with xD data sample. The number of data sample dimensions is determined by the number of *components* given. This constructor can be usefull for pressure matrix or any measuring system with 2D (or more) data sample dimension.
+Simplified constructor for time series signal with xD data sample. The number of data sample dimensions is determined by the number of *components* given. This constructor can be useful for pressure matrix or any measuring system with 2D (or more) data sample dimension.
 
 Note: The given ** should be based on the enum Type. :
 
@@ -231,7 +231,7 @@ Note: The given ** should be based on the enum Type. :
 
     unsigned ma::TimeSequence::components ( ) const noexcept
 
-Returns the total number of components for one data sample. This method multiplies each dimensions together to compute the total number of component. It can be usefull to convert a xD signal into a 1D signal.
+Returns the total number of components for one data sample. This method multiplies each dimension together to compute the total number of components. It can be useful to convert a xD signal into a 1D signal.
 
 ------------------------------------------------------------------------
 
@@ -251,13 +251,13 @@ Warning: You should used this method very carefully. It is recommended to call t
 
     double ma::TimeSequence::data ( unsigned  sample ,  Is...  indices ) const noexcept [inline]
 
-Extract a read-only element of the time sequence for the given *sample* index and dimensions *indices*. In case the the number of *indices* is not consistent with the number of dimension, ths missing ones are set to 0.
+Extract a read-only element of the time sequence for the given *sample* index and dimensions *indices*. In case that the number of *indices* is not consistent with the number of dimensions, ths missing ones are set to 0.
 
 ------------------------------------------------------------------------
 
     double  & ma::TimeSequence::data ( unsigned  sample ,  Is...  indices ) noexcept [inline]
 
-Extract a reference to a read-only element of the time sequence for the given *sample* index and dimensions *indices*. In case the the number of *indices* is not consistent with the number of dimension, ths missing ones are set to 0. If the data are modified by this method, it is adviced to call [modified()](classma_1_1_node.html#1abd701c6cf53bf95aba1ea79d28e42f16) manually
+Extract a reference to a read-only element of the time sequence for the given *sample* index and dimensions *indices*. In case that the number of *indices* is not consistent with the number of dimensions, ths missing ones are set to 0. If the data are modified by this method, it is adviced to call [modified()](classma_1_1_node.html#1abd701c6cf53bf95aba1ea79d28e42f16) manually
 
 ------------------------------------------------------------------------
 
@@ -365,7 +365,7 @@ Returns the starting time associated with this time sequence.
 
     int ma::TimeSequence::type ( ) const noexcept
 
-Returns the type assocaited with the time sequence.
+Returns the type associated with the time sequence.
 
 ------------------------------------------------------------------------
 
